@@ -1,33 +1,78 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Import professional fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Glassmorphism Techy Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 191, 165, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 165, 0.2) 0%, 
+    rgba(0, 191, 165, 0.4) 50%, 
+    rgba(0, 191, 165, 0.2) 100%
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(0, 191, 165, 0.3);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 0 10px rgba(0, 191, 165, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 165, 0.4) 0%, 
+    rgba(0, 191, 165, 0.6) 50%, 
+    rgba(0, 191, 165, 0.4) 100%
+  );
+  box-shadow: 
+    0 0 15px rgba(0, 191, 165, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, 
+    rgba(0, 191, 165, 0.6) 0%, 
+    rgba(0, 191, 165, 0.8) 50%, 
+    rgba(0, 191, 165, 0.6) 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(0, 191, 165, 0.6),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
 }
 
 a {
@@ -35,8 +80,23 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Selection styling - Techy theme */
+::selection {
+  background: rgba(0, 191, 165, 0.3);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 191, 165, 0.5);
+}
+
+::-moz-selection {
+  background: rgba(0, 191, 165, 0.3);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 191, 165, 0.5);
+}
+
+/* Disable text selection on certain elements */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

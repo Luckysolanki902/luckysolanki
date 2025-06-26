@@ -1,0 +1,83 @@
+.scanLinesOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(100, 200, 255, 0.02) 0px,
+    rgba(100, 200, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.scanLine {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(100, 200, 255, 0.2) 20%,
+    rgba(100, 200, 255, 0.6) 50%,
+    rgba(100, 200, 255, 0.2) 80%,
+    transparent 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: 
+    0 0 10px rgba(100, 200, 255, 0.3),
+    0 0 20px rgba(100, 200, 255, 0.1);
+  filter: blur(0.5px);
+}
+
+@keyframes scanLineMove {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(calc(100vh + 10px));
+    opacity: 0;
+  }
+}
+
+.scanLine {
+  animation: scanLineMove 6s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .scanLinesOverlay {
+    opacity: 0.2;
+  }
+  
+  .scanLine {
+    height: 1px;
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanLine {
+    animation: none;
+    opacity: 0;
+  }
+  
+  .scanLinesOverlay {
+    opacity: 0;
+  }
+}

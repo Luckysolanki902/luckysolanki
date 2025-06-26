@@ -1,0 +1,380 @@
+/* Terminal Section Styles */
+.terminalSection {
+  min-height: 100vh;
+  background: #000000;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.terminalSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Matrix Rain Background */
+.matrixBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Professional Background Overlay */
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: 
+    /* Main gradient overlay */
+    radial-gradient(
+      ellipse at center,
+      rgba(9, 9, 11, 0.85) 0%,
+      rgba(15, 23, 42, 0.92) 30%,
+      rgba(20, 20, 30, 0.96) 60%,
+      rgba(9, 9, 11, 0.98) 100%
+    ),
+    /* Directional gradient for depth */
+    linear-gradient(135deg, 
+      rgba(30, 41, 59, 0.1) 0%, 
+      transparent 50%, 
+      rgba(51, 65, 85, 0.08) 100%
+    ),
+    /* Subtle tech pattern */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(0, 191, 165, 0.008) 100px,
+      rgba(0, 191, 165, 0.008) 102px
+    );
+}
+
+/* Floating Particles */
+.particlesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(0, 191, 165, 0.4);
+  border-radius: 50%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.particle1 {
+  top: 20%;
+  left: 10%;
+  animation: particleFloat1 15s infinite;
+  box-shadow: 0 0 6px rgba(0, 191, 165, 0.3);
+}
+
+.particle2 {
+  top: 60%;
+  left: 80%;
+  animation: particleFloat2 18s infinite;
+  background: rgba(100, 116, 139, 0.3);
+  box-shadow: 0 0 4px rgba(100, 116, 139, 0.2);
+}
+
+.particle3 {
+  top: 40%;
+  left: 70%;
+  animation: particleFloat3 20s infinite;
+  width: 1px;
+  height: 1px;
+  background: rgba(226, 232, 240, 0.5);
+}
+
+.particle4 {
+  top: 80%;
+  left: 20%;
+  animation: particleFloat4 16s infinite;
+  background: rgba(0, 191, 165, 0.2);
+  width: 3px;
+  height: 3px;
+}
+
+@keyframes particleFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  25% { transform: translate(30px, -20px) scale(1.2); opacity: 0.8; }
+  50% { transform: translate(-10px, -40px) scale(0.8); opacity: 0.3; }
+  75% { transform: translate(-25px, -10px) scale(1.1); opacity: 0.6; }
+}
+
+@keyframes particleFloat2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  33% { transform: translate(-40px, 20px) rotate(120deg); opacity: 0.7; }
+  66% { transform: translate(20px, -30px) rotate(240deg); opacity: 0.4; }
+}
+
+@keyframes particleFloat3 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+  20% { transform: translate(15px, -15px); opacity: 0.8; }
+  40% { transform: translate(-20px, -25px); opacity: 0.3; }
+  60% { transform: translate(25px, 10px); opacity: 0.6; }
+  80% { transform: translate(-10px, 20px); opacity: 0.4; }
+}
+
+@keyframes particleFloat4 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  50% { transform: translate(-30px, -50px) scale(1.5); opacity: 0.5; }
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  z-index: 4;
+  position: relative;
+}
+
+.sectionTitle {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  text-shadow: 0 0 20px rgba(0, 191, 165, 0.3);
+}
+
+.titleAccent {
+  color: #00bfa5;
+  font-size: 1.2em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.titleMain {
+  background: linear-gradient(135deg, #ffffff 0%, #00bfa5 50%, #94a3b8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+  
+}
+
+.titleCursor {
+  color: #00bfa5;
+  animation: blink 1s step-end infinite;
+  font-weight: 300;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.sectionSubtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: #00bfa5;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  background: rgba(0, 191, 165, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 191, 165, 0.2);
+}
+
+.terminalContainer {
+  width: 100%;
+  max-width: 1000px;
+  height: 650px;
+  position: relative;
+  z-index: 4;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 
+    0 32px 64px -12px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 32px rgba(0, 191, 165, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Background Effects */
+.backgroundEffects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.gridOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 191, 165, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 165, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 25s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+.noiseOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+  animation: noise 3s infinite linear;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-3%, -3%); }
+  20% { transform: translate(-6%, 3%); }
+  30% { transform: translate(3%, -6%); }
+  40% { transform: translate(-3%, 9%); }
+  50% { transform: translate(-6%, 3%); }
+  60% { transform: translate(9%, 0%); }
+  70% { transform: translate(0%, 9%); }
+  80% { transform: translate(-9%, 6%); }
+  90% { transform: translate(6%, 3%); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .terminalSection {
+    padding: 3rem 1rem;
+    min-height: 100vh;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    gap: 0.15em;
+  }
+  
+  .titleAccent {
+    font-size: 1.1em;
+  }
+  
+  .sectionSubtitle {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+  
+  .terminalContainer {
+    height: 520px;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  
+  /* Disable particles on mobile for performance */
+  .particlesContainer {
+    display: none;
+  }
+  
+  .backgroundOverlay {
+    background: 
+      radial-gradient(
+        ellipse at center,
+        rgba(9, 9, 11, 0.9) 0%,
+        rgba(15, 23, 42, 0.95) 40%,
+        rgba(9, 9, 11, 0.98) 100%
+      );
+  }
+}
+
+@media (max-width: 480px) {
+  .terminalSection {
+    padding: 2rem 0.8rem;
+  }
+  
+  .terminalContainer {
+    height: 480px;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: clamp(1.3rem, 7vw, 1.8rem);
+  }
+  
+  .sectionSubtitle {
+    font-size: clamp(0.85rem, 4vw, 1rem);
+    line-height: 1.5;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .terminalSection {
+    transition: opacity 0.3s ease;
+  }
+  
+  .gridOverlay {
+    animation: none;
+  }
+  
+  .noiseOverlay {
+    animation: none;
+  }
+  
+  .particle {
+    animation: none;
+  }
+}

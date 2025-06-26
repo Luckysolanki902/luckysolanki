@@ -1,0 +1,584 @@
+/* Terminal Component Styles */
+.terminal {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.95) 0%, 
+    rgba(30, 41, 59, 0.9) 100%
+  );
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: text;
+  position: relative;
+}
+
+.terminal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, transparent 98%, rgba(0, 191, 165, 0.05) 100%),
+    linear-gradient(0deg, transparent 98%, rgba(0, 191, 165, 0.05) 100%);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Terminal Header */
+.terminalHeader {
+  background: linear-gradient(135deg, 
+    rgba(51, 65, 85, 0.8) 0%, 
+    rgba(71, 85, 105, 0.6) 100%
+  );
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.windowControls {
+  display: flex;
+  gap: 8px;
+}
+
+.controlButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.controlButton:hover {
+  transform: scale(1.1);
+}
+
+.terminalTitle {
+  font-weight: 500;
+  color: #e2e8f0;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.terminalInfo {
+  font-size: 11px;
+  color: #64748b;
+  background: rgba(100, 116, 139, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Terminal Body */
+.terminalBody {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.terminalBody::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminalBody::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminalBody::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    rgba(0, 191, 165, 0.2) 0%, 
+    rgba(0, 191, 165, 0.4) 50%, 
+    rgba(0, 191, 165, 0.2) 100%
+  );
+  border-radius: 2px;
+  transition: all 0.2s ease-out;
+}
+
+.terminalBody::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    rgba(0, 191, 165, 0.3) 0%, 
+    rgba(0, 191, 165, 0.6) 50%, 
+    rgba(0, 191, 165, 0.3) 100%
+  );
+  box-shadow: 0 0 4px rgba(0, 191, 165, 0.2);
+}
+
+/* Mobile responsive scrollbar */
+@media (max-width: 768px) {
+  .terminalBody::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  .terminalBody::-webkit-scrollbar-thumb {
+    background: rgba(0, 191, 165, 0.3);
+    border-radius: 1px;
+  }
+  
+  .terminalBody::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 191, 165, 0.3);
+    box-shadow: none;
+  }
+}
+
+/* Touch device optimization */
+@media (hover: none) {
+  .terminalBody::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 191, 165, 0.3);
+    box-shadow: none;
+  }
+}
+
+/* Output Lines */
+.outputLine {
+  margin-bottom: 4px;
+  max-width: 100%;
+
+}
+
+.commandLine {
+  color: #00bfa5;
+  font-weight: 500;
+  margin-bottom: 8px;
+  max-width: 100%;
+
+}
+
+.responseLine {
+  margin-bottom: 12px;
+  max-width: 100%;
+
+}
+
+.responseText {
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.systemLine {
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.systemText {
+  color: #94a3b8;
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* AI Response Styles */
+.aiLine {
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.aiText {
+  color: #60a5fa;
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+  line-height: 1.6;
+  border-left: 3px solid #60a5fa;
+  padding-left: 12px;
+  background: rgba(96, 165, 250, 0.05);
+  border-radius: 0 4px 4px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Loading Animation Styles */
+.loadingLine {
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.loadingText {
+  color: #fbbf24;
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 3px solid #fbbf24;
+  padding-left: 12px;
+  background: rgba(251, 191, 36, 0.05);
+  border-radius: 0 4px 4px 0;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.loadingDots {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.loadingDots span {
+  width: 4px;
+  height: 4px;
+  background: #fbbf24;
+  border-radius: 50%;
+  display: inline-block;
+  animation: loadingPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.3s;
+}
+
+.dot3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes loadingPulse {
+  0%, 20%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.8);
+  }
+}
+
+/* Loading text shimmer effect */
+.loadingText::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(251, 191, 36, 0.2) 50%, 
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Input Line */
+.inputLine {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 8px;
+  position: relative;
+  flex-wrap: wrap;
+  min-height: 24px;
+  max-width: 100%;
+  
+}
+
+.prompt {
+  color: #00bfa5;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.terminalInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  caret-color: #00bfa5;
+  width: 100%;
+  min-width: 120px; /* Ensure minimum usable width */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.terminalInput::selection {
+  background: rgba(0, 191, 165, 0.3);
+}
+
+.cursor {
+  color: #00bfa5;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Loading state for terminal input */
+.terminalInput:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inputLine.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.inputLine.loading .prompt {
+  color: #fbbf24;
+  animation: loadingGlow 2s ease-in-out infinite;
+}
+
+@keyframes loadingGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.9);
+  }
+}
+
+/* Progress bar for loading operations */
+.loadingProgress {
+  width: 100%;
+  height: 2px;
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 1px;
+  margin: 8px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingProgress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(251, 191, 36, 0.8) 50%,
+    transparent 100%
+  );
+  animation: progressSlide 2s ease-in-out infinite;
+}
+
+@keyframes progressSlide {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Spinning loader icon */
+.loadingSpinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(251, 191, 36, 0.2);
+  border-radius: 50%;
+  border-top: 2px solid #fbbf24;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced text effects */
+.responseText {
+  position: relative;
+}
+
+.responseText::selection {
+  background: rgba(0, 191, 165, 0.2);
+}
+
+/* Command highlighting */
+.commandLine {
+  position: relative;
+}
+
+.commandLine::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #00bfa5, transparent);
+  border-radius: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terminal {
+    font-size: 13px;
+    border-radius: 8px;
+  }
+  
+  .terminalHeader {
+    padding: 10px 12px;
+  }
+  
+  .terminalBody {
+    padding: 12px;
+  }
+  
+  .terminalTitle {
+    font-size: 12px;
+  }
+  
+  .terminalInfo {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  
+  .inputLine {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .prompt {
+    margin-right: 0;
+    margin-bottom: 2px;
+  }
+  
+  .terminalInput {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal {
+    font-size: 12px;
+  }
+  
+  .terminalBody {
+    padding: 8px;
+  }
+  
+  .controlButton {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .windowControls {
+    gap: 6px;
+  }
+  
+  .responseText, .systemText, .aiText {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+}
+
+/* Enhanced visual effects */
+.terminal {
+  box-shadow: 
+    0 0 20px rgba(0, 191, 165, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.terminalHeader {
+  position: relative;
+}
+
+.terminalHeader::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 191, 165, 0.3) 50%, 
+    transparent 100%
+  );
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+  
+  .controlButton {
+    transition: none;
+  }
+}
+
+/* Focus states */
+.terminal:focus-within {
+  box-shadow: 
+    0 0 20px rgba(0, 191, 165, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Special text highlighting for skills display */
+.responseText {
+  --progress-bg: rgba(0, 191, 165, 0.2);
+  --progress-fill: #00bfa5;
+}
+
+/* Custom selection colors */
+::selection {
+  background: rgba(0, 191, 165, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(0, 191, 165, 0.3);
+  color: #ffffff;
+}
