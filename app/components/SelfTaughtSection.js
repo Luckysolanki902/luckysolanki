@@ -134,43 +134,6 @@ export default function SelfTaughtSection() {
                     ))}
                 </div>
 
-                {/* Comparison Section */}
-                <div
-                    className={`${styles.comparisonSection} ${isVisible('comparison') ? styles.visible : ''}`}
-                    data-element-id="comparison"
-                >
-                    <h3 className={styles.sectionTitle}>Academic vs Self-Taught Reality</h3>
-                    <div className={styles.comparisonGrid}>
-                        <div className={styles.academicSide}>
-                            <h4>Mechanical Engineering Curriculum</h4>
-                            <div className={styles.skillsList}>
-                                <span>Thermodynamics</span>
-                                <span>Statics & Dynamics</span>
-                                <span>Material Science</span>
-                                <span>Manufacturing Processes</span>
-                                <span>Heat Transfer</span>
-                                <span>Fluid Mechanics</span>
-                            </div>
-                        </div>
-                        <div className={styles.dividerLine}>
-                            <span className={styles.dividerText}>vs</span>
-                        </div>
-                        <div className={styles.selfTaughtSide}>
-                            <h4>Self-Taught Development Skills</h4>
-                            <div className={styles.skillsList}>
-                                <span>Full-Stack Web Development</span>
-                                <span>Real-time Systems</span>
-                                <span>Business Logic & Architecture</span>
-                                <span>UI/UX Design Principles</span>
-                                <span>AI Integration</span>
-                                <span>Startup Operations</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.comparisonQuote}>
-                        "I didn't wait for a degree to define me. I let my projects speak instead."
-                    </div>
-                </div>
 
                 {/* Philosophy Section */}
                 <div
