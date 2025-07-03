@@ -371,7 +371,7 @@ export default function ContactSection() {
                   </div>
                   <div className={styles.infoContent}>
                     <h4>GitHub</h4>
-                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
+                    <a href="https://github.com/Luckysolanki902" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
                       github.com/Lukysolanki902
                     </a>
                   </div>
@@ -387,7 +387,7 @@ export default function ContactSection() {
                   </div>
                   <div className={styles.infoContent}>
                     <h4>LinkedIn</h4>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
+                    <a href="https://linkedin.com/in/luckysolanki902" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
                       linkedin.com/in/luckysolanki902
                     </a>
                   </div>
