@@ -34,10 +34,10 @@ function createTransporter() {
 
 export async function POST(request) {
   try {
-    const { name, email, message } = await request.json();
+    const { name, email, message, source } = await request.json();
 
     // Validate input
-    if (!name || !email || !message) {
+    if (!name || !email || !message || !source) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -62,6 +62,7 @@ export async function POST(request) {
       name,
       email,
       message,
+      source,
       timestamp: new Date(),
       ip: request.headers.get('x-forwarded-for') || 'unknown',
       userAgent: request.headers.get('user-agent') || 'unknown'
@@ -85,6 +86,7 @@ export async function POST(request) {
                 <h3 style="margin-top: 0; color: #333;">Contact Details</h3>
                 <p><strong>Name:</strong> ${name}</p>
                 <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Source:</strong> ${source}</p>
                 <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
               </div>
               <div style="background: #fff; padding: 20px; border-left: 4px solid #00bfa5; margin: 20px 0;">

@@ -55,12 +55,12 @@ export default function ContactSection() {
 
     // Start submission state
     setFormState(prev => ({ ...prev, isSubmitting: true }));
-    
+
     // Reset any previous status
-    setFormStatus(prev => ({ 
-      ...prev, 
-      submitted: false, 
-      showAnimation: false 
+    setFormStatus(prev => ({
+      ...prev,
+      submitted: false,
+      showAnimation: false
     }));
 
     try {
@@ -73,6 +73,7 @@ export default function ContactSection() {
           name: formState.name,
           email: formState.email,
           message: formState.message,
+          source: 'contact_form'
         }),
       });
 
@@ -95,7 +96,7 @@ export default function ContactSection() {
           isSubmitting: false,
           submitComplete: true
         }));
-        
+
         // Reset the form after success animation
         setTimeout(() => {
           setFormState({
@@ -106,19 +107,19 @@ export default function ContactSection() {
             submitComplete: false
           });
         }, 3000);
-        
+
         // Auto-dismiss the success message
         setTimeout(() => {
-          setFormStatus(prev => ({ 
-            ...prev, 
-            showAnimation: false 
+          setFormStatus(prev => ({
+            ...prev,
+            showAnimation: false
           }));
         }, 5000);
-        
+
         setTimeout(() => {
-          setFormStatus(prev => ({ 
-            ...prev, 
-            submitted: false 
+          setFormStatus(prev => ({
+            ...prev,
+            submitted: false
           }));
         }, 5500);
       } else {
@@ -129,10 +130,10 @@ export default function ContactSection() {
             success: false,
             message: data.error || 'Something went wrong. Please try again.'
           });
-          
+
           setFormState(prev => ({ ...prev, isSubmitting: false }));
         }, 300);
-        
+
         // Auto-dismiss error message
         setTimeout(() => {
           setFormStatus(prev => ({ ...prev, submitted: false }));
@@ -140,7 +141,7 @@ export default function ContactSection() {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      
+
       // Show network error with slight delay
       setTimeout(() => {
         setFormStatus({
@@ -148,10 +149,10 @@ export default function ContactSection() {
           success: false,
           message: 'Network error. Please check your connection and try again.'
         });
-        
+
         setFormState(prev => ({ ...prev, isSubmitting: false }));
       }, 300);
-      
+
       // Auto-dismiss error message
       setTimeout(() => {
         setFormStatus(prev => ({ ...prev, submitted: false }));
@@ -273,7 +274,7 @@ export default function ContactSection() {
                   </div>
 
                   {/* Status message above button */}
-                  <div 
+                  <div
                     className={`
                       ${styles.statusMessage} 
                       ${formStatus.submitted ? styles.active : ''} 

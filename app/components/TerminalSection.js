@@ -58,7 +58,7 @@ export default function TerminalSection() {
           <span className={styles.titleCursor}>|</span>
         </h2>
         <p className={styles.sectionSubtitle}>
-          Navigate my digital world through commands • Type <span className={styles.highlight}>help</span> to explore
+          Navigate my digital world through commands • Type <span className={styles.highlight}>help</span> to explore or type <span className={styles.highlight}>ai</span> to know more about me in natural language
         </p>
       </div>
       

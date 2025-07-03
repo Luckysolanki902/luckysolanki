@@ -59,6 +59,14 @@ const COMMANDS = {
   ai: {
     description: 'Ask questions in natural language',
     category: 'AI'
+  },
+  education: {
+    description: 'Show academic background',
+    category: 'Info'
+  },
+  startup: {
+    description: 'Details about Maddy Custom',
+    category: 'Projects'
   }
 };
 
@@ -83,136 +91,148 @@ const RESPONSES = {
   },
   
   about: () => `
-Full Stack Developer & Creative Technologist
+Full Stack Developer & Software Entrepreneur
 
-I'm Lucky Solanki, a passionate developer who transforms ideas into 
-exceptional digital experiences. With expertise spanning modern web 
-technologies, I create scalable applications that blend functionality 
-with beautiful design.
+I'm Lucky Solanki, a software developer specializing in full-stack development 
+and entrepreneurial ventures. With a background in Mechanical Engineering, I've 
+built expertise in software development through self-directed learning and 
+practical implementation.
 
-🎯 Focus Areas:
-• Frontend: React, Next.js, TypeScript, Tailwind CSS
-• Backend: Node.js, Python, Express, FastAPI
-• Database: PostgreSQL, MongoDB, Redis
-• Cloud: AWS, Vercel, Docker
-• Tools: Git, VS Code, Figma
+Professional Focus:
+• Web & Mobile Development
+• Scalable Backend Architecture
+• E-commerce Solutions
+• Real-time Applications
 
-I believe in writing clean, maintainable code and staying current 
-with emerging technologies. When I'm not coding, you'll find me 
-exploring new frameworks or contributing to open source projects.
+I've developed and deployed 10+ production-scale projects, including a 
+successful e-commerce platform generating ₹6L+ in monthly revenue. My 
+technical decisions are driven by performance, scalability, and user experience.
+
+
   `,
   
   skills: () => `
 Technical Skills & Expertise
 
-Programming Languages:
-├── JavaScript/TypeScript  ████████████ Expert
-├── Python                ███████████  Advanced
-├── Java                  █████████    Intermediate
-├── Go                    ██████       Learning
-└── Rust                  ████         Exploring
+Frontend Development (95% mastery):
+├── React.js            ████████████ Expert
+├── Next.js             ████████████ Expert
+├── Tailwind CSS        ████████████ Expert
+├── Material UI         ███████████  Advanced
+├── Framer Motion       ███████████  Advanced
+├── React Spring        ██████████   Advanced
+├── GSAP                █████████    Advanced
+└── Lexical             █████████    Advanced
 
-Frontend Technologies:
-├── React/Next.js         ████████████ Expert
-├── Vue.js                █████████    Advanced
-├── Svelte                ██████       Intermediate
-└── Angular               █████        Intermediate
+Backend & API (92% mastery):
+├── Node.js             ████████████ Expert
+├── Express.js          ████████████ Expert
+├── MongoDB             ███████████  Advanced
+├── MySQL               ███████████  Advanced
+├── Firebase            ███████████  Advanced
+├── JWT                 ██████████   Advanced
+├── REST APIs           ████████████ Expert
+└── Webhooks            ██████████   Advanced
 
-Backend & Database:
-├── Node.js/Express       ████████████ Expert
-├── Python/FastAPI        ███████████  Advanced
-├── PostgreSQL            ██████████   Advanced
-├── MongoDB               █████████    Advanced
-└── Redis                 ████████     Intermediate
+Real-Time Systems (88% mastery):
+├── Socket.IO           ███████████  Advanced
+├── WebRTC              ██████████   Advanced
+├── OpenAI API          ███████████  Advanced
+├── Razorpay            ██████████   Advanced
+├── Shiprocket          ██████████   Advanced
+├── Twilio              █████████    Advanced
+├── Cloudinary          ██████████   Advanced
+└── CryptoJS            █████████    Advanced
 
-DevOps & Tools:
-├── Docker                █████████    Advanced
-├── AWS/Cloud             ████████     Intermediate
-├── Git/GitHub            ████████████ Expert
-└── CI/CD                 ███████      Intermediate
+DevOps & Infra (87% mastery):
+├── AWS S3              ██████████   Advanced
+├── CloudFront          █████████    Advanced
+├── GitHub Actions      █████████    Advanced
+├── Vercel              ███████████  Advanced
+├── Render              ██████████   Advanced
+├── Clerk               ██████████   Advanced
+└── SEO Optimization    ███████████  Advanced
+
+Automation & AI (92% mastery):
+├── Python              ███████████  Advanced
+├── Tesseract OCR       ██████████   Advanced
+├── OpenAI              ███████████  Advanced
+├── Raspberry Pi        █████████    Advanced
+└── Encryption          ██████████   Advanced
+
+Product Strategy (85% mastery):
+├── User Analytics      ██████████   Advanced
+├── A/B Testing         █████████    Advanced
+├── Growth Metrics      █████████    Advanced
+└── SEO-led Impact      ██████████   Advanced
   `,
   
   projects: () => `
 Featured Projects
 
-📊 Analytics Dashboard
-   A real-time analytics platform built with Next.js and D3.js
-   • Tech: Next.js, TypeScript, PostgreSQL, WebSockets
-   • Features: Real-time data visualization, custom charts
-   • Status: Production (10k+ users)
+01. Maddy Custom
+    E-commerce platform for vehicle personalization
+    • Position: Co-founder & CTO
+    • Tech: React, Next.js, Node.js, MongoDB
+    • Features: Custom admin panel, payment processing, inventory management
+    • Impact: 50K+ monthly users, ₹6L+ monthly revenue
 
-🛒 E-commerce Platform
-   Full-stack e-commerce solution with modern UX
-   • Tech: React, Node.js, Stripe, MongoDB
-   • Features: Payment processing, inventory management
-   • Status: Live & scaling
+02. MeetYourMate
+    Social platform for college campuses
+    • Tech: Socket.IO, Clerk auth, CryptoJS
+    • Features: Real-time messaging, anonymous sharing
+    • Security: End-to-end encryption, privacy-first architecture
 
-🤖 AI Chat Assistant
-   Intelligent chatbot with natural language processing
-   • Tech: Python, OpenAI API, React, FastAPI
-   • Features: Context awareness, multi-language support
-   • Status: Beta testing
+03. AnotherMe
+    Productivity & self-improvement platform
+    • Tech: React, Lexical editor, MongoDB
+    • Features: Task management, progress tracking, analytics
+    • Security: End-to-end encrypted user data
 
-🎮 Game Development Framework
-   Lightweight 2D game engine for web browsers
-   • Tech: TypeScript, WebGL, Canvas API
-   • Features: Physics engine, sprite animation
-   • Status: Open source
+04. AI Quiz Solver
+    Education automation toolkit
+    • Tech: Python, Tesseract OCR, OpenAI, Twilio
+    • Features: Screen capture analysis, AI-powered problem solving
+    • Implementation: Computer vision + NLP pipeline
 
-Type 'project <name>' for detailed information about any project.
+05. EasyMola
+    Campus logistics application
+    • Tech: Firebase, React Native
+    • Features: Real-time tracking, request management
+    • Build time: Rapid MVP development (under 1 hour)
+
+
   `,
   
   experience: () => `
 Professional Experience
 
-🏢 Senior Full Stack Developer
-   TechCorp Solutions | 2022 - Present
-   • Lead development of microservices architecture
-   • Mentored junior developers and code reviews
-   • Improved application performance by 40%
-   • Technologies: React, Node.js, AWS, PostgreSQL
-
-💼 Frontend Developer
-   Digital Agency | 2020 - 2022
-   • Built responsive web applications for clients
-   • Collaborated with design teams on UI/UX
-   • Implemented modern web standards and accessibility
-   • Technologies: Vue.js, JavaScript, SCSS, Figma
-
-🚀 Freelance Developer
-   Independent | 2019 - 2020
-   • Developed custom web solutions for small businesses
-   • Created e-commerce platforms and landing pages
-   • Provided technical consulting and maintenance
-   • Technologies: WordPress, PHP, JavaScript, MySQL
-
-📚 Computer Science Degree
-   University of Technology | 2015 - 2019
-   • Bachelor's in Computer Science
-   • Focus on Software Engineering and Algorithms
-   • Graduated with Honors (3.8 GPA)
+ Maddy Custom | 2022 - Present
+   Co-founder & CTO
+   • Built completely from scratch without Shopify or templates
+   • Architected both frontend and backend systems
+   • Implemented role-based admin panel, advanced offer engine
+   • Integrated Razorpay and Shiprocket APIs
+   • Created SEO-focused architecture and behavior tracking
+   • Grew to 50K+ monthly users, 2K+ monthly transactions
+   • Achieved top 5 Google ranking for core keywords
+   • Team: Harshit (CEO), Priyanshu (Co-founder), 
+     Sumit (CPO), and Prashant (CDO)
   `,
   
   contact: () => `
 Get In Touch
 
-📧 Email:     lucky.solanki@email.com
-🌐 Website:   https://luckysolanki.dev
-💼 LinkedIn:  linkedin.com/in/luckysolanki
-🐙 GitHub:    github.com/luckysolanki
-🐦 Twitter:   @luckysolanki_dev
+ Email:     luckysolanki902@gmail.com
+ GitHub:    github.com/Luckysolanki902
+ LinkedIn:  linkedin.com/in/luckysolanki902
 
-📍 Location:  San Francisco Bay Area
-🕐 Timezone:  PST (UTC-8)
-
-Available for:
+I'm available for:
 • Full-time opportunities
 • Freelance projects
-• Technical consulting
 • Open source collaboration
 
-Feel free to reach out for any inquiries or just to say hello!
-I typically respond within 24 hours.
+Feel free to reach out for any inquiries or just to type 'message' in the terminal to send me a message!
   `,
   
   whoami: () => 'guest@luckysolanki.dev',
@@ -230,7 +250,63 @@ I typically respond within 24 hours.
   
   message: () => 'Initiating contact form... Please provide the following information:',
   
-  ai: () => 'AI Chat activated! Ask me anything about my work, skills, or experience.'
+  ai: () => 'AI Chat activated! Ask me anything about my work, skills, or experience.',
+  
+  education: () => `
+Academic Background
+
+ Harcourt Butler Technical University (HBTU), Kanpur
+   B.Tech in Mechanical Engineering (2021-2025)
+   
+   Despite pursuing Mechanical Engineering formally, my passion and 
+   self-education has been focused on Computer Science and Software 
+   Development. I've consistently applied technical skills through 
+   various campus projects and extracurricular activities.
+   
+   Key Achievements:
+   • Web Development Head for HBTU's Technical Sub Council (2023-2024)
+   • Built the tech fest website with ticketing and registration systems
+   • Created platforms used by thousands of students on campus
+   • Self-taught programming languages, frameworks, and development practices
+   
+   My academic journey represents my ability to learn independently and
+   apply knowledge across disciplines. While mechanical engineering 
+   provided me with problem-solving foundations, my self-directed 
+   learning in software development has been my true passion.
+  `,
+  
+  startup: () => `
+Maddy Custom — E-commerce Platform
+
+Position: Co-founder & CTO
+Industry: Vehicle Personalization
+Revenue: ₹6L+/month
+
+Key Metrics:
+• 50K+ monthly users
+• 2K+ monthly transactions
+• Top 5 Google ranking for core keywords
+
+Technical Architecture:
+• Custom-built full-stack solution
+• Role-based authorization system
+• Payment processing (Razorpay)
+• Logistics integration (Shiprocket)
+• SEO-optimized structure
+• Analytics implementation
+
+Leadership:
+• Led technical strategy and implementation
+• Collaborated with cross-functional team
+• Managed development workflow and releases
+• Implemented data-driven decision making
+
+Notable Achievements:
+• Reduced page load time by 40%
+• Implemented A/B testing framework
+• Designed scalable database architecture
+• Created automated inventory management
+  `
 };
 
 export default function Terminal() {
@@ -313,7 +389,7 @@ Type 'help' to see available commands or explore at your own pace.
         response = 'Step 3/3: Please enter your message:';
       }
     } else if (step === 2) { // Message input
-      const finalData = { ...contactFormState.data, message: input };
+      const finalData = { ...contactFormState.data, message: input, source: 'terminal' };
       
       // Show loading animation
       setIsLoadingMessage(true);
@@ -483,6 +559,10 @@ Type 'help' to see available commands or explore at your own pace.
       response = args.join(' ') || '';
     } else if (mainCommand === 'history') {
       response = RESPONSES.history(commandHistory);
+    } else if (mainCommand === 'education') {
+      response = RESPONSES.education();
+    } else if (mainCommand === 'startup') {
+      response = RESPONSES.startup();
     } else if (RESPONSES[mainCommand]) {
       response = RESPONSES[mainCommand]();
     } else if (trimmedCommand === '') {
