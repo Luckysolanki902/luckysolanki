@@ -41,7 +41,7 @@ export default function ExperienceSection() {
 
       <div className={styles.container}>
         {/* Header */}
-        <div 
+        <div
           className={`${styles.header} ${isVisible('header') ? styles.visible : ''}`}
           data-element-id="header"
         >
@@ -59,7 +59,7 @@ export default function ExperienceSection() {
         </div>
 
         {/* Main Experience Content */}
-        <div 
+        <div
           className={`${styles.experienceContainer} ${isVisible('experience') ? styles.visible : ''}`}
           data-element-id="experience"
         >
@@ -80,7 +80,7 @@ export default function ExperienceSection() {
               <div className={styles.timelineRow}>
                 <div className={styles.timeline}>2022 — Present</div>
                 <div className={styles.status}>
-                  Operating at <span className={styles.highlight}>₹6+ lakh/month</span> revenue
+                  Operating at <span className={styles.highlight} style={{ marginLeft: '6px', marginRight: '6px' }}>₹6+ lakh/month</span> revenue
                 </div>
               </div>
             </div>
@@ -91,41 +91,41 @@ export default function ExperienceSection() {
             <div className={styles.sectionBlock}>
               <h3 className={styles.sectionTitle}>Building From Zero</h3>
               <p className={styles.sectionText}>
-                No templates. No shortcuts. I co-founded Maddy Custom with a mission to deliver personalized automotive accessories — and I've led the <span className={styles.emphasis}>entire product and technical architecture</span> since day one.
+                When I joined Maddy Custom, I wasn’t even a developer. I didn’t rely on Shopify or any pre-built platforms — I taught myself everything and built it all from scratch.
               </p>
               <p className={styles.sectionText}>
-                While others outsourced, I built. Every system. Every screen. Every strategy.
+                While others outsourced, I built — every screen, every system, every strategy. From code to conversion, this was my crash course in full-stack development and entrepreneurship.
               </p>
             </div>
+
 
             {/* What I Built Section */}
             <div className={styles.sectionBlock}>
               <h3 className={styles.sectionTitle}>What I Built</h3>
-              
+
               <div className={styles.buildArea}>
                 <h4 className={styles.buildTitle}>The Frontend</h4>
                 <p className={styles.buildDescription}>
                   A fully responsive eCommerce storefront optimized for SEO, speed, and scale — designed to convert first-time visitors through performance, UX, and trust.
                 </p>
                 <ul className={styles.buildPoints}>
-                  <li>Built with <span className={styles.tag}>React</span>, <span className={styles.tag}>Next.js</span>, <span className={styles.tag}>Tailwind</span>, and <span className={styles.tag}>Material UI</span></li>
+                  <li>Built with <span className={styles.tag}>React</span>, <span className={styles.tag}>Next.js</span>, <span className={styles.tag}>Vanilla CSS</span>, and <span className={styles.tag}>Material UI</span></li>
                   <li>Integrated real-time product previews and customizable variants</li>
-                  <li>Lighthouse scores: <span className={styles.highlight}>90+ across all categories</span></li>
                 </ul>
               </div>
-              
+
               <div className={styles.buildArea}>
                 <h4 className={styles.buildTitle}>The Admin System</h4>
                 <p className={styles.buildDescription}>
                   A complete business operations suite — no third-party dashboards. Custom built to scale and match internal workflows.
                 </p>
                 <ul className={styles.buildPoints}>
-                  <li>Inventory and product management</li>
+                  <li>Inventory, Offer, and product management and more...</li>
                   <li>Auto-generated offer system (combo & best price logic)</li>
-                  <li>Role-based dashboard access: <span className={styles.tag}>Marketing</span> · <span className={styles.tag}>Production</span> · <span className={styles.tag}>Design</span> · <span className={styles.tag}>Fulfillment</span></li>
+                  <li>Role-based dashboard access for each department and admins. </li>
                 </ul>
               </div>
-              
+
               <div className={styles.buildArea}>
                 <h4 className={styles.buildTitle}>Order & Payment Flows</h4>
                 <p className={styles.buildDescription}>
@@ -137,7 +137,7 @@ export default function ExperienceSection() {
                   <li>Built-in customer service tools: refunds, reports, and logs</li>
                 </ul>
               </div>
-              
+
               <div className={styles.buildArea}>
                 <h4 className={styles.buildTitle}>Analytics & Growth Infrastructure</h4>
                 <p className={styles.buildDescription}>
@@ -150,7 +150,7 @@ export default function ExperienceSection() {
                 </ul>
               </div>
             </div>
-            
+
             {/* CTO Responsibilities Section */}
             <div className={styles.sectionBlock}>
               <h3 className={styles.sectionTitle}>CTO Responsibilities</h3>
@@ -163,7 +163,7 @@ export default function ExperienceSection() {
                 <li>Handled product strategy meetings, tech growth plans, and design systems</li>
               </ul>
             </div>
-            
+
             {/* Result Section */}
             <div className={styles.resultBlock}>
               <h3 className={styles.resultTitle}>The Result</h3>
@@ -171,7 +171,7 @@ export default function ExperienceSection() {
                 From raw Photoshop mockups to a <span className={styles.emphasis}>custom-built, profitable, scalable platform</span> — Maddy Custom now ships products across the country and handles thousands of monthly users, all through infrastructure that I built and continue to evolve.
               </p>
             </div>
-            
+
             {/* Team Recognition */}
             <div className={styles.teamBlock}>
               <div className={styles.teamIcon}>
@@ -185,7 +185,13 @@ export default function ExperienceSection() {
               <div className={styles.teamContent}>
                 <h4 className={styles.teamTitle}>Team Success</h4>
                 <p className={styles.teamText}>
-                  Working alongside <span className={styles.partnerName}>Harshit</span> (CEO & Founder) has been foundational to our success. While I built the technology, Harshit executed flawlessly on marketing, production, strategy, and team building — turning our vision into a thriving business through encouragement, motivation, and exceptional leadership.
+                  Working alongside <span className={styles.partnerName}>Harshit</span> (Founder & CEO) has been nothing short of transformative. While I focused on building the tech, Harshit executed with unmatched clarity—leading marketing, driving production, refining strategy, and most importantly, building a culture-first team that believes in ownership and outcome. His encouragement, hustle, and vision have turned raw ideas into real business.
+                </p>
+                <p className={styles.sectionText}>
+                  <span className={styles.partnerName}>Priyanshu</span> (Co-founder) has anchored our production with relentless focus and reliability. <span className={styles.partnerName}>Sumit</span> (CPO) brings structure to our product thinking, ensuring every feature we ship aligns with business goals. And <span className={styles.partnerName}>Prashant</span> (CDO) elevates our design direction with clarity, consistency, and creativity.
+                </p>
+                <p className={styles.sectionText}>
+                  What began as a simple idea is now a ₹6L+/month business — not just because of code, but because of a team that thinks, executes, and grows together.
                 </p>
               </div>
             </div>

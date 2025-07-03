@@ -1,0 +1,341 @@
+.loadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.loadingContent {
+  position: relative;
+  width: min(90%, 600px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Terminal Styles */
+.terminal {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 30px rgba(0, 191, 165, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  animation: floatTerminal 6s ease-in-out infinite;
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminalDots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.terminalDots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminalDots span:nth-child(1) { background-color: #ff5f56; }
+.terminalDots span:nth-child(2) { background-color: #ffbd2e; }
+.terminalDots span:nth-child(3) { background-color: #27ca3f; }
+
+.terminalTitle {
+  margin-left: auto;
+  font-family: var(--font-geist-mono);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.terminalBody {
+  padding: 1rem;
+  min-height: 240px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.terminalLines {
+  font-family: var(--font-geist-mono);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.initialLine {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.prompt {
+  color: #00bfa5;
+  font-weight: bold;
+}
+
+.command {
+  color: #ffffff;
+}
+
+.terminalLine {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  line-height: 1.5;
+}
+
+.linePrefix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #00bfa5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.checkmark {
+  color: #00bfa5;
+  font-size: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.successIcon {
+  color: #27ca3f;
+  font-size: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.lineText {
+  flex: 1;
+}
+
+.loading {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.completed {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.success {
+  color: #00bfa5;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-shadow: 0 0 8px rgba(0, 191, 165, 0.6);
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+.currentLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 0.2rem;
+  width: 0.6rem;
+  height: 1.2rem;
+  background-color: #00bfa5;
+  opacity: 0;
+}
+
+.cursor.visible {
+  opacity: 1;
+}
+
+/* Progress Bar */
+.progressContainer {
+  width: 100%;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00bfa5, #00796b);
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.progressFill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+.progressText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.8rem;
+  font-family: var(--font-geist-mono);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.percentage {
+  font-weight: 600;
+  color: #00bfa5;
+}
+
+.progressMessage {
+  font-size: 0.85rem;
+}
+
+/* Background Elements */
+.backgroundGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 191, 165, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 165, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: 1;
+  pointer-events: none;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100%, 800px);
+  height: min(100%, 800px);
+  background: radial-gradient(circle, rgba(0, 191, 165, 0.15) 0%, transparent 60%);
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  animation: pulse 6s ease-in-out infinite alternate;
+}
+
+.glowEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(0, 191, 165, 0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes floatTerminal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes textPulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(0, 191, 165, 0.6); }
+  50% { text-shadow: 0 0 15px rgba(0, 191, 165, 0.9); }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .terminalBody {
+    min-height: 200px;
+  }
+  
+  .terminal {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminalBody {
+    padding: 0.75rem;
+    min-height: 180px;
+  }
+  
+  .terminalTitle {
+    font-size: 0.8rem;
+  }
+  
+  .terminalLines {
+    font-size: 0.85rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .loadingContainer * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -10,13 +10,15 @@ export default function ContactSection() {
     email: '',
     message: '',
     isSubmitting: false,
+    submitComplete: false
   });
   const [formStatus, setFormStatus] = useState({
     submitted: false,
     success: false,
     message: '',
+    showAnimation: false
   });
-  
+
   const sectionRef = useRef(null);
   const formRef = useRef(null);
 
@@ -50,9 +52,17 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Start submission state
     setFormState(prev => ({ ...prev, isSubmitting: true }));
     
+    // Reset any previous status
+    setFormStatus(prev => ({ 
+      ...prev, 
+      submitted: false, 
+      showAnimation: false 
+    }));
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -69,40 +79,83 @@ export default function ContactSection() {
       const data = await response.json();
 
       if (response.ok) {
-        setFormStatus({
-          submitted: true,
-          success: true,
-          message: 'Message sent successfully! I\'ll be in touch soon.',
-        });
-        
-        // Reset the form
-        setFormState({
-          name: '',
-          email: '',
-          message: '',
+        // Show success status with slight delay for animation smoothness
+        setTimeout(() => {
+          setFormStatus({
+            submitted: true,
+            success: true,
+            message: 'Message sent successfully! I\'ll be in touch soon.',
+            showAnimation: true
+          });
+        }, 300);
+
+        // Mark as complete but don't reset form instantly
+        setFormState(prev => ({
+          ...prev,
           isSubmitting: false,
-        });
+          submitComplete: true
+        }));
+        
+        // Reset the form after success animation
+        setTimeout(() => {
+          setFormState({
+            name: '',
+            email: '',
+            message: '',
+            isSubmitting: false,
+            submitComplete: false
+          });
+        }, 3000);
+        
+        // Auto-dismiss the success message
+        setTimeout(() => {
+          setFormStatus(prev => ({ 
+            ...prev, 
+            showAnimation: false 
+          }));
+        }, 5000);
+        
+        setTimeout(() => {
+          setFormStatus(prev => ({ 
+            ...prev, 
+            submitted: false 
+          }));
+        }, 5500);
       } else {
-        setFormStatus({
-          submitted: true,
-          success: false,
-          message: data.error || 'Something went wrong. Please try again.',
-        });
+        // Show error with slight delay for transition
+        setTimeout(() => {
+          setFormStatus({
+            submitted: true,
+            success: false,
+            message: data.error || 'Something went wrong. Please try again.'
+          });
+          
+          setFormState(prev => ({ ...prev, isSubmitting: false }));
+        }, 300);
+        
+        // Auto-dismiss error message
+        setTimeout(() => {
+          setFormStatus(prev => ({ ...prev, submitted: false }));
+        }, 6000);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      setFormStatus({
-        submitted: true,
-        success: false,
-        message: 'Network error. Please check your connection and try again.',
-      });
-    } finally {
-      setFormState(prev => ({ ...prev, isSubmitting: false }));
       
-      // Auto-dismiss the message after 5 seconds
+      // Show network error with slight delay
+      setTimeout(() => {
+        setFormStatus({
+          submitted: true,
+          success: false,
+          message: 'Network error. Please check your connection and try again.'
+        });
+        
+        setFormState(prev => ({ ...prev, isSubmitting: false }));
+      }, 300);
+      
+      // Auto-dismiss error message
       setTimeout(() => {
         setFormStatus(prev => ({ ...prev, submitted: false }));
-      }, 5000);
+      }, 6000);
     }
   };
 
@@ -117,7 +170,7 @@ export default function ContactSection() {
 
       <div className={styles.container}>
         {/* Header */}
-        <div 
+        <div
           className={`${styles.header} ${isVisible('header') ? styles.visible : ''}`}
           data-element-id="header"
         >
@@ -134,7 +187,7 @@ export default function ContactSection() {
           <div className={styles.headerGlow}></div>
         </div>
 
-        <div 
+        <div
           className={`${styles.contactContainer} ${isVisible('contact') ? styles.visible : ''}`}
           data-element-id="contact"
         >
@@ -149,9 +202,11 @@ export default function ContactSection() {
                 </div>
                 <div className={styles.cardPath}>~/message/new</div>
               </div>
-              
+
               <div className={styles.formBody}>
                 <form ref={formRef} onSubmit={handleSubmit} className={styles.contactForm}>
+
+
                   <div className={styles.formGroup}>
                     <div className={styles.inputWrapper}>
                       <label className={styles.inputLabel} htmlFor="name">
@@ -173,7 +228,7 @@ export default function ContactSection() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <div className={styles.inputWrapper}>
                       <label className={styles.inputLabel} htmlFor="email">
@@ -195,7 +250,7 @@ export default function ContactSection() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className={styles.formGroup}>
                     <div className={styles.inputWrapper}>
                       <label className={styles.inputLabel} htmlFor="message">
@@ -212,60 +267,85 @@ export default function ContactSection() {
                         value={formState.message}
                         onChange={handleChange}
                         required
-                        rows="6"
+                        rows="4"
                       ></textarea>
                     </div>
                   </div>
-                  
-                  <button 
-                    type="submit" 
-                    className={styles.submitButton}
-                    disabled={formState.isSubmitting}
+
+                  {/* Status message above button */}
+                  <div 
+                    className={`
+                      ${styles.statusMessage} 
+                      ${formStatus.submitted ? styles.active : ''} 
+                      ${formStatus.success ? styles.success : styles.error}
+                      ${formStatus.showAnimation && formStatus.success ? styles.successAnimation : ''}
+                    `}
+                    aria-live="polite"
                   >
-                    {formState.isSubmitting ? (
-                      <div className={styles.loadingIndicator}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    ) : (
-                      <>
-                        <span>Send Message</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="22" y1="2" x2="11" y2="13"></line>
-                          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    {formStatus.submitted && (
+                      formStatus.success ? (
+                        <div className={styles.successIconContainer}>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.successIcon}>
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                          </svg>
+                          <div className={styles.successRipple}></div>
+                        </div>
+                      ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.errorIcon}>
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="12" y1="8" x2="12" y2="12"></line>
+                          <line x1="12" y1="16" x2="12.01" y2="16"></line>
                         </svg>
-                      </>
+                      )
                     )}
+                    {formStatus.submitted && <span className={styles.statusText}>{formStatus.message}</span>}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className={`
+                      ${styles.submitButton} 
+                      ${formState.isSubmitting ? styles.submitting : ''}
+                      ${formState.submitComplete ? styles.submitComplete : ''}
+                    `}
+                    disabled={formState.isSubmitting || formState.submitComplete}
+                  >
+                    <div className={styles.buttonContent}>
+                      {formState.isSubmitting ? (
+                        <div className={styles.loadingIndicator}>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                      ) : formState.submitComplete ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.completeIcon}>
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      ) : (
+                        <>
+                          <span className={styles.buttonText}>Send Message</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.sendIcon}>
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                          </svg>
+                        </>
+                      )}
+                    </div>
+                    <div className={styles.buttonBackground}></div>
                   </button>
                 </form>
-                
-                {/* Form status message */}
-                <div className={`${styles.statusMessage} ${formStatus.submitted ? styles.active : ''} ${formStatus.success ? styles.success : styles.error}`}>
-                  {formStatus.success ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="12" y1="8" x2="12" y2="12"></line>
-                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                    </svg>
-                  )}
-                  <span>{formStatus.message}</span>
-                </div>
               </div>
             </div>
-            
+
             {/* Connection Info Card */}
             <div className={styles.infoCard}>
               <div className={styles.infoHeader}>
                 <h3 className={styles.infoTitle}>Other Ways To Connect</h3>
                 <div className={styles.infoAccent}></div>
               </div>
-              
+
               <div className={styles.infoBody}>
                 <div className={styles.infoItem}>
                   <div className={styles.infoIcon}>
@@ -276,12 +356,12 @@ export default function ContactSection() {
                   </div>
                   <div className={styles.infoContent}>
                     <h4>Email</h4>
-                    <a href="mailto:your.email@example.com" className={styles.infoLink}>
-                      your.email@example.com
+                    <a href="mailto:luckysolanki902@gmail.com" className={styles.infoLink}>
+                      luckysolanki902@gmail.com
                     </a>
                   </div>
                 </div>
-                
+
                 <div className={styles.infoItem}>
                   <div className={styles.infoIcon}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -291,11 +371,11 @@ export default function ContactSection() {
                   <div className={styles.infoContent}>
                     <h4>GitHub</h4>
                     <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
-                      github.com/yourusername
+                      github.com/Lukysolanki902
                     </a>
                   </div>
                 </div>
-                
+
                 <div className={styles.infoItem}>
                   <div className={styles.infoIcon}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -307,12 +387,12 @@ export default function ContactSection() {
                   <div className={styles.infoContent}>
                     <h4>LinkedIn</h4>
                     <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className={styles.infoLink}>
-                      linkedin.com/in/yourprofile
+                      linkedin.com/in/luckysolanki902
                     </a>
                   </div>
                 </div>
               </div>
-              
+
               <div className={styles.infoNotes}>
                 <p>Looking forward to connecting with you!</p>
                 <p>Response time: <span className={styles.highlight}>24-48 hours</span></p>

@@ -57,7 +57,7 @@ const COMMANDS = {
     category: 'Contact'
   },
   ai: {
-    description: 'Chat with AI Lucky',
+    description: 'Ask questions in natural language',
     category: 'AI'
   }
 };

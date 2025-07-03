@@ -7,6 +7,7 @@ import SelfTaughtSection from './components/SelfTaughtSection';
 import ToolsSection from './components/ToolsSection';
 import ExperienceSection from './components/ExperienceSection';
 import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -27,8 +28,7 @@ export default function Home() {
       <ToolsSection />
       <ExperienceSection />
       <ContactSection />
-      
-      {/* No placeholder needed as we have all sections now */}
+      <Footer />
     </div>
   );
 }

@@ -139,6 +139,7 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
+  animation: float 6s ease-in-out infinite;
 }
 
 .formCard::before {
@@ -151,6 +152,23 @@
   background: radial-gradient(circle at top right, rgba(0, 191, 165, 0.15), transparent 70%);
   filter: blur(50px);
   z-index: 0;
+}
+
+.formCard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00bfa5, transparent);
+  z-index: 0;
+  animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .cardHeader {
@@ -227,20 +245,58 @@
   border-radius: 8px;
   color: #ffffff;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   font-family: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputWrapper:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 5%;
+  width: 90%;
+  height: 10px;
+  background: rgba(0, 191, 165, 0.2);
+  filter: blur(8px);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.inputWrapper:focus-within:after {
+  opacity: 1;
 }
 
 .formInput:focus,
 .formTextarea:focus {
-  border-color: rgba(0, 191, 165, 0.5);
+  border-color: rgba(0, 191, 165, 0.7);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.2);
+  box-shadow: 0 0 20px rgba(0, 191, 165, 0.4);
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.formInput:not(:placeholder-shown),
+.formTextarea:not(:placeholder-shown) {
+  border-color: rgba(0, 191, 165, 0.3);
+}
+
+.inputWrapper:hover .formInput,
+.inputWrapper:hover .formTextarea {
+  border-color: rgba(0, 191, 165, 0.3);
+  box-shadow: 0 0 10px rgba(0, 191, 165, 0.1);
 }
 
 .formTextarea {
   resize: vertical;
-  min-height: 150px;
+  min-height: 130px;
 }
 
 .formInput::placeholder,
@@ -256,57 +312,158 @@
   gap: 0.8rem;
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #00bfa5 0%, rgba(0, 191, 165, 0.8) 100%);
-  color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  margin-top: 2rem;
+  background: transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.submitButton::before {
+.buttonBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #00bfa5 0%, rgba(0, 191, 165, 0.8) 100%);
+  z-index: -1;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submitButton:hover .buttonBackground {
+  transform: scale(1.03, 1.08);
+  background: linear-gradient(135deg, #00bfa5 0%, rgba(0, 191, 165, 0.9) 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.submitButton:hover .buttonContent {
+  transform: scale(1.02);
+  letter-spacing: 0.5px;
+}
+
+.sendIcon {
+  width: 20px;
+  height: 20px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submitButton:hover .sendIcon {
+  transform: translateX(6px) rotate(-15deg);
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
+}
+
+.submitButton:active .buttonBackground {
+  transform: scale(0.98);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: transform 0.6s ease;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  z-index: 0;
+  animation: shine 3s infinite;
 }
 
-.submitButton:hover::before {
-  transform: translateX(200%);
+.submitButton:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.submitButton:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #00bfa5 0%, rgba(0, 191, 165, 0.9) 100%);
+.submitButton:hover:after {
+  transform: translateX(100%);
 }
 
-.submitButton svg {
-  width: 20px;
-  height: 20px;
-  transition: transform 0.3s ease;
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  20%, 100% { transform: translateX(100%); }
 }
 
-.submitButton:hover svg {
-  transform: rotate(-15deg);
+/* Submitting State */
+.submitting {
+  pointer-events: none;
 }
 
-.submitButton:active {
-  transform: translateY(-1px);
+.submitting .buttonBackground {
+  background: linear-gradient(135deg, #008e76 0%, rgba(0, 142, 119, 0.8) 100%);
+  animation: gradientShift 2s infinite;
 }
 
+.submitting .buttonContent {
+  transform: scale(0.98);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; background-size: 100% 100%; }
+  50% { background-position: 100% 50%; background-size: 200% 100%; }
+  100% { background-position: 0% 50%; background-size: 100% 100%; }
+}
+
+/* Complete State */
+.submitComplete .buttonBackground {
+  background: #27ca3f;
+  animation: completeScale 0.8s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px rgba(39, 202, 63, 0.4);
+}
+
+.completeIcon {
+  width: 24px;
+  height: 24px;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+  transform: scale(0.5);
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes completeScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.5); }
+  70% { transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Disabled State */
 .submitButton:disabled {
-  background: rgba(0, 191, 165, 0.5);
   cursor: not-allowed;
-  transform: none;
 }
 
 /* Loading Animation */
@@ -315,6 +472,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  height: 24px;
+  position: relative;
+  width: 100%;
 }
 
 .loadingIndicator span {
@@ -322,7 +482,24 @@
   height: 8px;
   border-radius: 50%;
   background-color: #ffffff;
-  animation: loadingPulse 1.5s infinite ease-in-out both;
+  animation: loadingPulse 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1) both;
+  opacity: 0.8;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.loadingIndicator::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: progressBar 2s ease-in-out infinite;
 }
 
 .loadingIndicator span:nth-child(1) {
@@ -330,19 +507,21 @@
 }
 
 .loadingIndicator span:nth-child(2) {
-  animation-delay: 0.2s;
+  animation-delay: 0.15s;
 }
 
 .loadingIndicator span:nth-child(3) {
-  animation-delay: 0.4s;
+  animation-delay: 0.3s;
+}
+
+@keyframes progressBar {
+  0% { transform: scaleX(0); }
+  50% { transform: scaleX(1); }
+  100% { transform: scaleX(0); transform-origin: right; }
 }
 
 /* Status Message */
 .statusMessage {
-  position: absolute;
-  bottom: -80px;
-  left: 0;
-  right: 0;
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -350,19 +529,67 @@
   border-radius: 8px;
   transform: translateY(-20px);
   opacity: 0;
+  height: 0;
   pointer-events: none;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
 .statusMessage.active {
   transform: translateY(0);
   opacity: 1;
+  height: auto;
+  margin: 1rem 0;
   pointer-events: all;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              margin 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.statusMessage svg {
-  width: 20px;
-  height: 20px;
+.statusText {
+  position: relative;
+  z-index: 2;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.successIcon, .errorIcon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.successIcon {
+  color: #27ca3f;
+  animation: successPulse 2s infinite;
+}
+
+.errorIcon {
+  color: #ff5f56;
+}
+
+.successIconContainer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.successRipple {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(39, 202, 63, 0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1;
 }
 
 .statusMessage.success {
@@ -377,6 +604,105 @@
   color: #ff5f56;
 }
 
+/* Success Animation */
+.successAnimation {
+  animation: successGlow 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) !important;
+}
+
+.successAnimation .successRipple {
+  animation: ripple 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.successAnimation .successIcon {
+  animation: successIconEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+             successPulse 2s infinite 0.6s;
+}
+
+.successAnimation:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(39, 202, 63, 0) 0%, rgba(39, 202, 63, 0.1) 50%, rgba(39, 202, 63, 0) 100%);
+  z-index: 1;
+  animation: successShimmer 2.5s infinite;
+}
+
+.successAnimation .statusText {
+  animation: fadeInSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes successGlow {
+  0% { box-shadow: 0 0 0 0 rgba(39, 202, 63, 0.4); }
+  30% { box-shadow: 0 0 20px 5px rgba(39, 202, 63, 0.6); }
+  70% { box-shadow: 0 0 30px 8px rgba(39, 202, 63, 0.4); }
+  100% { box-shadow: 0 0 5px 2px rgba(39, 202, 63, 0.2); }
+}
+
+@keyframes ripple {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(3); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+@keyframes successShimmer {
+  0% { transform: translateX(-100%); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes successIconEntrance {
+  0% { opacity: 0; transform: scale(0); }
+  70% { transform: scale(1.3); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInSlideUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Error Animation */
+.statusMessage.error {
+  animation: errorShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.statusMessage.error .errorIcon {
+  animation: errorIconEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  transform: scale(0);
+}
+
+.statusMessage.error .statusText {
+  animation: fadeInSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.2s;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes errorShake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-3px); }
+  40%, 60% { transform: translateX(3px); }
+}
+
+@keyframes errorIconEntrance {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
 /* Info Card */
 .infoCard {
   background: rgba(255, 255, 255, 0.02);
@@ -389,6 +715,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1s;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .infoCard::before {
@@ -434,6 +763,11 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.infoItem:hover {
+  transform: translateX(5px);
 }
 
 .infoIcon {
@@ -558,8 +892,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.2); opacity: 0.7; }
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Responsive Design */
