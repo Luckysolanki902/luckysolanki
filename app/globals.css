@@ -161,3 +161,14 @@ a {
     transform: none;
   }
 }
+
+/* Terminal-specific selection style */
+::selection {
+  background: rgba(0, 191, 165, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(0, 191, 165, 0.3);
+  color: #ffffff;
+}

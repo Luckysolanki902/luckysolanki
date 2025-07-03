@@ -572,13 +572,5 @@
   --progress-fill: #00bfa5;
 }
 
-/* Custom selection colors */
-::selection {
-  background: rgba(0, 191, 165, 0.3);
-  color: #ffffff;
-}
+/* Custom selection colors moved to globals.css */
 
-::-moz-selection {
-  background: rgba(0, 191, 165, 0.3);
-  color: #ffffff;
-}
