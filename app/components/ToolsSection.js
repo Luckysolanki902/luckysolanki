@@ -86,13 +86,13 @@ export default function ToolsSection() {
       liveLink: 'https://maddycustom.com'
     },
     {
-      name: 'MeetYourMate.in',
+      name: 'MeetYourMate.vercel.app',
       tagline: 'Real-time social experiment for college campuses',
       description: 'A real-time anonymous social platform built for verified students to connect through confessions, text chat, and vlogs. Developed the full-stack infrastructure with Socket.IO for real-time communication, Clerk for authentication, and CryptoJS for privacy-focused architecture.',
       stack: ['Next.js', 'Socket.IO', 'MongoDB', 'Firebase', 'Vanilla CSS', 'CryptoJS'],
       status: 'Live',
       impact: 'Day-1 Viral hype on Campus',
-      liveLink: 'https://meetyourmate.in',
+      liveLink: 'https://meetyourmate.vercel.app',
       githubLink: 'https://github.com/Luckysolanki902/mym',
       serverGithubLink: 'https://github.com/Luckysolanki902/mym-server'
     },
